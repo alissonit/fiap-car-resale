@@ -19,7 +19,7 @@ from src.application.use_cases.sales import (
 router = APIRouter()
 
 
-@router.get("/api/v1/sales", response_model=list[RegisterSalesV1Response])
+@router.get("/sales", response_model=list[RegisterSalesV1Response])
 async def list_sales() -> list[RegisterSalesV1Response]:
     """
     List all sales
@@ -30,7 +30,7 @@ async def list_sales() -> list[RegisterSalesV1Response]:
     return sales
 
 
-@router.post("/api/v1/sales", response_model=RegisterSalesV1Response)
+@router.post("/sales", response_model=RegisterSalesV1Response)
 async def register_sales(
     response: Response,
     sales_request: RegisterSalesV1Request,
@@ -46,7 +46,7 @@ async def register_sales(
     return sales
 
 
-@router.put("/api/v1/sales", response_model=RegisterSalesV1Response)
+@router.put("/sales", response_model=RegisterSalesV1Response)
 async def update_sales(
     sales_request: UpdateSalesV1Request
 ) -> RegisterSalesV1Response:
@@ -59,7 +59,7 @@ async def update_sales(
     return sales
 
 
-@router.delete("/api/v1/sales/{sales_id}", response_model=DeleteSalesV1Response)
+@router.delete("/sales/{sales_id}", response_model=DeleteSalesV1Response)
 async def delete_sales(
     sales_id: int
 ):
