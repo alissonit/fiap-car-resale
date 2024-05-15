@@ -1,4 +1,4 @@
-# Fiap Car Resale Management
+# Fiap Car Resale
 Projeto desenvolvido para a pós-graduação em Arquiteura de Software da FIAP.
 
 ## Objetivo
