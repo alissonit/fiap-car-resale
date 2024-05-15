@@ -20,7 +20,6 @@ router = APIRouter()
 
 
 @router.get("/api/v1/cars", response_model=list[RegisterCarV1Response])
-@inject
 async def list_cars() -> list[RegisterCarV1Response]:
     """
     List cars
@@ -32,7 +31,6 @@ async def list_cars() -> list[RegisterCarV1Response]:
 
 
 @router.post("/api/v1/cars", response_model=RegisterCarV1Response)
-@inject
 async def register_car(
     response: Response,
     car_request: RegisterCarV1Request,
@@ -49,7 +47,6 @@ async def register_car(
 
 
 @router.put("/api/v1/cars", response_model=RegisterCarV1Response)
-@inject
 async def update_car(
         response: Response,
         car_request: RegisterCarV1Request) -> RegisterCarV1Response:
@@ -65,7 +62,6 @@ async def update_car(
 
 
 @router.delete("/api/v1/cars/{car_id}", response_model=DeleteCarV1Response)
-@inject
 async def delete_car(
         response: Response,
         car_id: int) -> DeleteCarV1Response:
