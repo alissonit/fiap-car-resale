@@ -51,12 +51,8 @@ http://localhost:8000/api/v1/docs
 
 ### Entregas
 
-- [x] Cadastrar um veículo para venda (Marca, modelo, ano, cor, preço)
-- [x] Editar os dados do veículo
+- [x] Efetuar a venda de um veículo (CPF da pessoa que comprou e data da venda)
+- [x] Listagem de veículos à venda, ordenada por preço, do mais barato para o mais caro
+- [x] Listagem de veículos vendidos, ordenada por preço, do mais barato para o mais caro.
 
-### Entregas adicionais
-
-- [x] Exclusão de veículos
-- [x] Criação de usuário
-- [ ] Autenticação de usuário
 
