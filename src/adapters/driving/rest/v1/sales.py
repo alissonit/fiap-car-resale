@@ -4,6 +4,7 @@ from dependency_injector.wiring import inject
 from src.adapters.driving.rest.v1.dto.sales import (
     RegisterSalesV1Request,
     RegisterSalesV1Response,
+    UpdateSalesV1Request,
     DeleteSalesV1Response
 )
 
@@ -47,7 +48,7 @@ async def register_sales(
 
 @router.put("/api/v1/sales", response_model=RegisterSalesV1Response)
 async def update_sales(
-    sales_request: RegisterSalesV1Request
+    sales_request: UpdateSalesV1Request
 ) -> RegisterSalesV1Response:
     """
     Update a sales

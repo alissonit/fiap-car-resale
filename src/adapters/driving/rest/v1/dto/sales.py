@@ -54,6 +54,28 @@ class RegisterSalesV1Response(BaseModel):
             }
         }
 
+class UpdateSalesV1Request(BaseModel):
+    """
+    Class Model for Update Sales
+    """
+    sale_id: int
+    car_id: Optional[int]
+    buyer_cpf: Optional[str]
+    sale_status: Optional[Literal['PENDING', 'COMPLETED', 'CANCELLED']]
+
+    class Config:
+        """
+        Class config for Update Sales
+        """
+        from_attributes = True
+        json_schema_extra = {
+            "example": {
+                "sale_id": 1,
+                "car_id": 1,
+                "buyer_cpf": "12345678900",
+                "sale_status": "COMPLETED"
+            }
+        }
 
 @dataclass
 class RegisterSalesV1ListResponse(BaseModel):

@@ -51,13 +51,12 @@ class SalesRepository(SalesPort):
 
     async def update_sales(self, sales: Sales) -> Sales:
         async with self.engine.connect() as conn:
-            query = text("UPDATE sales SET car_id = :car_id, buyer_cpf = :buyer_cpf, sale_status = :sale_status, sale_date = :sale_date, sale_updated_at = :sale_updated_at WHERE sale_id = :sale_id RETURNING *")
+            query = text("UPDATE sales SET car_id = :car_id, buyer_cpf = :buyer_cpf, sale_status = :sale_status, sale_updated_at = :sale_updated_at WHERE sale_id = :sale_id RETURNING *")
             query = query.bindparams(
                 sale_id=sales.sale_id,
                 car_id=sales.car_id,
                 buyer_cpf=sales.buyer_cpf,
-                sale_state=sales.sale_status,
-                sale_date=sales.sale_date,
+                sale_status=sales.sale_status,
                 sale_updated_at=datetime.now()
             )
 
