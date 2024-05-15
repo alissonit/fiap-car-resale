@@ -54,6 +54,7 @@ class RegisterSalesV1Response(BaseModel):
             }
         }
 
+
 class UpdateSalesV1Request(BaseModel):
     """
     Class Model for Update Sales
@@ -76,6 +77,7 @@ class UpdateSalesV1Request(BaseModel):
                 "sale_status": "COMPLETED"
             }
         }
+
 
 @dataclass
 class RegisterSalesV1ListResponse(BaseModel):

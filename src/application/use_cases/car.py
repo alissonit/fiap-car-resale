@@ -3,6 +3,12 @@ from dependency_injector.wiring import Provide, inject
 
 from src.application.ports.car import CarPort
 
+from fastapi_filter import FilterDepends
+from sqlalchemy.sql.expression import select
+
+from src.application.filters.car import CarFilter
+from src.infrastructure.database.models.tables import Car as CarTable
+
 from src.adapters.driving.rest.v1.dto.cars import (
     RegisterCarV1Request,
     RegisterCarV1Response,
@@ -13,13 +19,25 @@ from src.configuration.dependency_injection import Container
 
 @inject
 async def use_case_list_cars(
-        car_port: CarPort = Depends(
-            Provide[Container.car_repository])) -> list[RegisterCarV1Response]:
+    car_filter: CarFilter = FilterDepends(CarFilter),
+    car_port: CarPort = Depends(
+        Provide[Container.car_repository]),
+    order_by: str = CarTable.car_price.desc()
+) -> list[RegisterCarV1Response]:
     """
     List cars
     """
 
-    cars = await car_port.list_cars()
+    if order_by == "-car_price":
+        order_by = CarTable.car_price.desc()
+    if order_by == "+car_price":
+        order_by = CarTable.car_price.asc()
+
+    query = select(CarTable)
+
+    query = car_filter.filter(query).order_by(order_by)
+
+    cars = await car_port.car_filter(query)
 
     return cars
 

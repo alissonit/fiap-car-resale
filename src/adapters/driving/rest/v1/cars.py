@@ -1,13 +1,14 @@
 # Description: Cars API endpoints
+from fastapi_filter import FilterDepends
 from fastapi import APIRouter, Response, status
-from dependency_injector.wiring import inject
 
+from src.application.filters.car import CarFilter
+from src.infrastructure.database.models.tables import Car as CarTable
 from src.adapters.driving.rest.v1.dto.cars import (
     RegisterCarV1Request,
     RegisterCarV1Response,
     DeleteCarV1Response
 )
-
 
 from src.application.use_cases.car import (
     use_case_create_car,
@@ -20,12 +21,15 @@ router = APIRouter()
 
 
 @router.get("/api/v1/cars", response_model=list[RegisterCarV1Response])
-async def list_cars() -> list[RegisterCarV1Response]:
+async def list_cars(
+    car_filter: CarFilter = FilterDepends(CarFilter),
+    order_by: str = CarTable.car_price.desc()
+) -> list[RegisterCarV1Response]:
     """
     List cars
     """
 
-    cars = await use_case_list_cars()
+    cars = await use_case_list_cars(car_filter=car_filter, order_by=order_by)
 
     return cars
 
@@ -72,4 +76,4 @@ async def delete_car(
 
     response.status_code = status.HTTP_200_OK
 
-    return DeleteCarV1Response(car_id=car.car_id)
+    return car
