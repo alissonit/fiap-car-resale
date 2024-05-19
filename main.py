@@ -5,7 +5,7 @@ from src.adapters.driving.rest.v1.sales import router as sales_router
 from src.adapters.driving.rest.v1.settings import router as settings_router
 from src.configuration.dependency_injection import Container
 
-ROOT_PATH = "/fiap-car-sale/api/v1"
+ROOT_PATH = "/fiap-car-resale/api/v1"
 
 app = FastAPI(
     title="Resale Car API",
@@ -18,6 +18,7 @@ app = FastAPI(
         "url": "https://opensource.org/licenses/MIT",
     }
 )
+
 container = Container()
 
 

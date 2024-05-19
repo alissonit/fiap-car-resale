@@ -103,6 +103,7 @@ class DeleteSalesV1Request(BaseModel):
 @dataclass
 class DeleteSalesV1Response(BaseModel):
     sale_id: int
+    message: str
 
     class Config:
         """
@@ -111,6 +112,7 @@ class DeleteSalesV1Response(BaseModel):
         from_attributes = True
         json_schema_extra = {
             "example": {
-                "sale_id": 1
+                "sale_id": 1,
+                "message": "Sales deleted"
             }
         }

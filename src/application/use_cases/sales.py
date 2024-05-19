@@ -60,6 +60,6 @@ async def use_case_delete_sales(
     """
     Delete a sales
     """
-    sales = await sales_port.delete_sales(sales_id)
+    sales_id = await sales_port.delete_sales(sales_id)
 
-    return sales
+    return {"message": "Sales deleted", "sale_id": sales_id}

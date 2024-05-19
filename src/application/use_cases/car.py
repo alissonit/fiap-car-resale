@@ -1,4 +1,4 @@
-from fastapi import Depends
+from fastapi import Depends, HTTPException, Response, status
 from dependency_injector.wiring import Provide, inject
 
 from src.application.ports.car import CarPort
@@ -16,9 +16,12 @@ from src.adapters.driving.rest.v1.dto.cars import (
 )
 from src.configuration.dependency_injection import Container
 
+from src.application.models.car import Car
+
 
 @inject
 async def use_case_list_cars(
+    response: Response,
     car_filter: CarFilter = FilterDepends(CarFilter),
     car_port: CarPort = Depends(
         Provide[Container.car_repository]),
@@ -39,11 +42,14 @@ async def use_case_list_cars(
 
     cars = await car_port.car_filter(query)
 
-    return cars
+    response.status_code = status.HTTP_200_OK
+
+    return cars, response
 
 
 @inject
 async def use_case_create_car(
+    response: Response,
     car_request: RegisterCarV1Request,
     car_port: CarPort = Depends(Provide[Container.car_repository])
 ) -> RegisterCarV1Response:
@@ -53,31 +59,42 @@ async def use_case_create_car(
 
     car = await car_port.register_car(car_request)
 
-    return car
+    if isinstance(car, Car):
+        response.status_code = status.HTTP_201_CREATED
+        return car, response
+    return HTTPException(status_code=404, detail="Car not found")
 
 
 @inject
 async def use_case_update_car(
-        car_request: RegisterCarV1Request,
-        car_port: CarPort = Depends(
-            Provide[Container.car_repository])) -> RegisterCarV1Response:
+    response: Response,
+    car_request: RegisterCarV1Request,
+    car_port: CarPort = Depends(
+        Provide[Container.car_repository])) -> RegisterCarV1Response:
     """
     Update a car
     """
 
     car = await car_port.update_car(car_request)
 
-    return car
+    if isinstance(car, Car):
+        response.status_code = status.HTTP_200_OK
+        return car, response
+    return HTTPException(status_code=404, detail="Car not found")
 
 
 @inject
 async def use_case_delete_car(
-        car_id: int,
-        car_port: CarPort = Depends(
-            Provide[Container.car_repository])) -> DeleteCarV1Response:
+    response: Response,
+    car_id: int,
+    car_port: CarPort = Depends(
+        Provide[Container.car_repository])) -> DeleteCarV1Response:
     """
     Delete a car
     """
     car = await car_port.delete_car(car_id)
 
-    return car
+    if isinstance(car, Car):
+        response.status_code = status.HTTP_200_OK
+        return car, response
+    return HTTPException(status_code=404, detail="Car not found")
