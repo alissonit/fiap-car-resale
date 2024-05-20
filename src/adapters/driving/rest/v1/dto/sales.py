@@ -5,6 +5,7 @@ from typing import Optional, Literal
 from pydantic import BaseModel
 from pydantic.dataclasses import dataclass
 
+from datetime import datetime
 
 @dataclass
 class RegisterSalesV1Request(BaseModel):
@@ -38,6 +39,9 @@ class RegisterSalesV1Response(BaseModel):
     buyer_cpf: str
     payment_code: str
     sale_status: Literal['PENDING', 'COMPLETED', 'CANCELLED']
+    sale_date: datetime
+    sale_created_at: datetime
+    sale_updated_at: datetime
 
     class Config:
         """
