@@ -14,6 +14,7 @@ class Sales(Base):
     buyer_cpf = Column(String)
     sale_status = Column(String)
     sale_date = Column(DateTime)
+    payment_code = Column(String)
     sale_created_at = Column(DateTime)
     sale_updated_at = Column(DateTime)
 

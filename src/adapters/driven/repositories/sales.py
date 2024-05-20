@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 from sqlalchemy.engine import Engine
 from sqlalchemy import text
@@ -16,11 +17,12 @@ class SalesRepository(SalesPort):
 
     async def register_sales(self, sales: Sales) -> Sales:
         async with self.engine.connect() as conn:
-            query = text("INSERT INTO sales (car_id, buyer_cpf, sale_status, sale_date, sale_created_at, sale_updated_at) VALUES (:car_id, :buyer_cpf, :sale_status, :sale_date, :sale_created_at, :sale_updated_at) RETURNING *")
+            query = text("INSERT INTO sales (car_id, buyer_cpf, sale_status, sale_date, sale_created_at, sale_updated_at, payment_code) VALUES (:car_id, :buyer_cpf, :sale_status, :sale_date, :sale_created_at, :sale_updated_at, :payment_code) RETURNING *")
             query = query.bindparams(
                 car_id=sales.car_id,
                 buyer_cpf=sales.buyer_cpf,
                 sale_status=sales.sale_status,
+                payment_code=str(uuid.uuid4()),
                 sale_date=datetime.now(),
                 sale_created_at=datetime.now(),
                 sale_updated_at=datetime.now()
@@ -42,6 +44,18 @@ class SalesRepository(SalesPort):
             query = text(
                 "SELECT * FROM sales WHERE sale_id = :sale_id")
             query = query.bindparams(sale_id=sale_id)
+            result = await conn.execute(query)
+            raw_sales = result.fetchone()
+
+            if raw_sales:
+                return Sales.model_validate(raw_sales._mapping)
+            return None
+
+    async def list_sales_by_payment_code(self, payment_code: str) -> Sales:
+        async with self.engine.connect() as conn:
+            query = text(
+                "SELECT * FROM sales WHERE payment_code = :payment_code")
+            query = query.bindparams(payment_code=payment_code)
             result = await conn.execute(query)
             raw_sales = result.fetchone()
 

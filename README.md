@@ -54,6 +54,9 @@ http://localhost:8000/api/v1/docs
 - [x] Efetuar a venda de um veículo (CPF da pessoa que comprou e data da venda)
 - [x] Listagem de veículos à venda, ordenada por preço, do mais barato para o mais caro
 - [x] Listagem de veículos vendidos, ordenada por preço, do mais barato para o mais caro.
-- [] Webhook para confirmção de pagamento.
+- [x] Disponibilizar um endpoint (webhook) para que a entidade que processa o pagamento
+consiga, a partir do código do pagamento, informar se o pagamento foi efetuado ou
+cancelado;
+
 
 

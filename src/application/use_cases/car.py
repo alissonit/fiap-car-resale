@@ -31,9 +31,9 @@ async def use_case_list_cars(
     List cars
     """
 
-    if order_by == "-car_price":
+    if order_by == "car_price_desc":
         order_by = CarTable.car_price.desc()
-    if order_by == "+car_price":
+    if order_by == "car_price_asc":
         order_by = CarTable.car_price.asc()
 
     query = select(CarTable)

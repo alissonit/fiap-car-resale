@@ -28,6 +28,13 @@ class SalesPort(ABC):
         List Sales by Sales ID
         """
         pass
+    
+    @abstractmethod
+    async def list_sales_by_payment_code(self, sales_id: str) -> Sales:
+        """
+        List Sales by Sales ID
+        """
+        pass
 
     @abstractmethod
     async def update_sales(self, sales: Sales) -> Sales:

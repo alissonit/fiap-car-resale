@@ -5,14 +5,16 @@ from src.adapters.driving.rest.v1.dto.sales import (
     RegisterSalesV1Request,
     RegisterSalesV1Response,
     UpdateSalesV1Request,
-    DeleteSalesV1Response
+    DeleteSalesV1Response,
+    PaymentStatus
 )
 
 from src.application.use_cases.sales import (
     use_case_list_sales,
     use_case_create_sales,
     use_case_update_sales,
-    use_case_delete_sales
+    use_case_delete_sales,
+    update_payment_status
 )
 
 
@@ -70,3 +72,16 @@ async def delete_sales(
     sales = await use_case_delete_sales(sales_id)
 
     return sales
+
+
+@router.post("/sales/webhook/payment", response_model=RegisterSalesV1Response)
+async def webhook_payment(
+    requests: PaymentStatus
+) -> RegisterSalesV1Response:
+    """
+    Webhook for payment
+    """
+
+    payment = await update_payment_status(requests)
+
+    return payment

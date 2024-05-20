@@ -15,6 +15,7 @@ class Sales(BaseModel):
     car_id: int
     buyer_cpf: str
     sale_status: Literal['PENDING', 'COMPLETED', 'CANCELLED']
+    payment_code: Optional[str] = None
     sale_date: Optional[datetime] = None
     sale_created_at: Optional[datetime] = None
     sale_updated_at: Optional[datetime] = None

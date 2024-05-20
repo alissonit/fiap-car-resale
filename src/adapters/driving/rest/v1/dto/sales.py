@@ -36,6 +36,7 @@ class RegisterSalesV1Response(BaseModel):
     sale_id: int
     car_id: int
     buyer_cpf: str
+    payment_code: str
     sale_status: Literal['PENDING', 'COMPLETED', 'CANCELLED']
 
     class Config:
@@ -62,6 +63,7 @@ class UpdateSalesV1Request(BaseModel):
     sale_id: int
     car_id: Optional[int]
     buyer_cpf: Optional[str]
+    payment_code: Optional[str]
     sale_status: Optional[Literal['PENDING', 'COMPLETED', 'CANCELLED']]
 
     class Config:
@@ -114,5 +116,22 @@ class DeleteSalesV1Response(BaseModel):
             "example": {
                 "sale_id": 1,
                 "message": "Sales deleted"
+            }
+        }
+
+
+class PaymentStatus(BaseModel):
+    status: Literal['PENDING', 'COMPLETED', 'CANCELLED']
+    payment_code: str
+
+    class Config:
+        """
+        Class config for Payment Status
+        """
+        from_attributes = True
+        json_schema_extra = {
+            "example": {
+                "status": "PENDING",
+                "payment_code": "6946181f-c344-414e-80ef-c1f8a2948545"
             }
         }
