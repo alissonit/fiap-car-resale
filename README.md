@@ -64,8 +64,8 @@ cancelado;
 - [x] Deploy no Openshift
 
 ### Infraestrutura
-- [] Cluster Openshift Red Hat.
-- [] Objetos do kubernetes (Deployment, Service, Ingress, ConfigMap, Secret).
+- [ ] Cluster Openshift Red Hat.
+- [ ] Objetos do kubernetes (Deployment, Service, Ingress, ConfigMap, Secret).
 - [x] Banco de dados PostgreSQL RDS AWS.
 
 
