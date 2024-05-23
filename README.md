@@ -58,8 +58,8 @@ consiga, a partir do código do pagamento, informar se o pagamento foi efetuado 
 cancelado;
 
 ### CI/CD
-- [] Implementar Github Actions
-- [] Implementar SonarQube
+- [ ] Implementar Github Actions
+- [ ] Implementar SonarQube
 - [x] Cobertura de testes unitários acima de 80%
 - [x] Deploy no Openshift
 
