@@ -2,13 +2,12 @@
 Projeto desenvolvido para a pós-graduação em Arquiteura de Software da FIAP.
 
 ## Objetivo
-O objetivo deste projeto é criar um sistema de revenda de carros, onde o usuário poderá cadastrar carros para venda e também comprar carros.
+O objetivo deste projeto é criar um sistema de revenda de Veículos, onde o usuário poderá cadastrar Veículos para venda e também comprar Veículos.
 
 ## Funcionalidades
-- Login
-- Cadastro de usuários
-- Cadastro de carros
-- Exclusão de carros
+- Lista de Veículos
+- Compra e venda de veículos
+- Webhook para notificação de pagamento
 
 ## Tecnologias
 - Python
