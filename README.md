@@ -50,7 +50,6 @@ http://localhost:8000/api/v1/docs
 
 
 ### Entregas
-
 - [x] Efetuar a venda de um veículo (CPF da pessoa que comprou e data da venda)
 - [x] Listagem de veículos à venda, ordenada por preço, do mais barato para o mais caro
 - [x] Listagem de veículos vendidos, ordenada por preço, do mais barato para o mais caro.
@@ -58,5 +57,15 @@ http://localhost:8000/api/v1/docs
 consiga, a partir do código do pagamento, informar se o pagamento foi efetuado ou
 cancelado;
 
+### CI/CD
+- [] Implementar Github Actions
+- [] Implementar SonarQube
+- [x] Cobertura de testes unitários acima de 80%
+- [x] Deploy no Openshift
+
+### Infraestrutura
+- [] Cluster Openshift Red Hat.
+- [] Objetos do kubernetes (Deployment, Service, Ingress, ConfigMap, Secret).
+- [x] Banco de dados PostgreSQL RDS AWS.
 
 
