@@ -1,0 +1,20 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  name: vs-fiap-car-resale-admin
+  namespace: alissonskt-dev
+spec:
+  host: vs-fiap-car-resale-admin-alissonskt-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+  path: /fiap-car-resale/admin
+  port:
+    targetPort: 8000
+  tls:
+    insecureEdgeTerminationPolicy: None
+    termination: edge
+  to:
+    kind: Service
+    name: fiap-car-resale-admin-svc
+    weight: 100
+  wildcardPolicy: None

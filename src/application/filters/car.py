@@ -2,7 +2,7 @@ from typing import Optional
 
 from fastapi_filter.contrib.sqlalchemy import Filter
 
-from src.infrastructure.database.models.tables import Car as CarTable
+from infrastructure.database.models.tables import Car as CarTable
 
 
 class CarFilter(Filter):

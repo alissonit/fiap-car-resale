@@ -1,0 +1,53 @@
+name: Pipeline fiap-car-resale
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: docker-practice/actions-setup-docker@master
+        timeout-minutes: 12
+      - run: |
+          set -x
+          docker version
+
+      - name: Install oc
+        uses: redhat-actions/openshift-tools-installer@v1
+        with:
+          oc: 4
+      
+      - name: oc login
+        run: |
+          oc login --token=${{ secrets.SECRET_OPENSHIFT }} --server=${{ secrets.OPENSHIFT_SERVER }}
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Docker build
+        run: |
+          docker build -t alissonskt/fiap-car-resale:1.0.0 .
+
+      - name: Docker login
+        run: |
+          docker login -u alissonskt -p ${{ secrets.DOCKER_HUB_TOKEN }}
+      
+      - name: Docker push
+        run: |
+          docker push alissonskt/fiap-car-resale:1.0.0
+
+      - name: oc import image
+        run: |
+         oc import-image image-registry.openshift-image-registry.svc:5000/alissonskt-dev/fiap-car-resale:1.0.0 --from=alissonskt/fiap-car-resale:1.0.0 --confirm
+
+      - name: Deploy App
+        run: |
+          oc patch dc fiap-car-resale -p '{"spec":{"template":{"spec":{"containers":[{"name":"fiap-car-resale","image":"default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/alissonskt-dev/fiap-car-resale:1.0.0"}]}}}}' -n alissonskt-dev
+      
+      - name: oc rollout 
+        run: |
+          oc rollout status dc/fiap-car-resale -n alissonskt-dev
