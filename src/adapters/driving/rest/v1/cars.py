@@ -4,7 +4,7 @@ from fastapi_filter import FilterDepends
 from fastapi import APIRouter, Response
 
 from src.application.filters.car import CarFilter
-from src.infrastructure.database.models.tables import Car as CarTable
+from infrastructure.database.models.tables import Car as CarTable
 from src.adapters.driving.rest.v1.dto.cars import (
     RegisterCarV1Request,
     RegisterCarV1Response,

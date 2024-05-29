@@ -1,0 +1,48 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: fiap-car-resale
+  namespace: alissonskt-dev
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: fiap-car-resale
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fiap-car-resale
+    spec:
+      containers:
+      - env:
+        - name: PORT
+          value: "8000"
+        - name: WORKERS
+          value: "1"
+        - name: LOG_LEVEL
+          value: info
+        image: default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/alissonskt-dev/fiap-car-resale:1.0.0
+        imagePullPolicy: Always
+        name: fiap-car-resale
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - type: ConfigChange
