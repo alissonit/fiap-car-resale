@@ -79,4 +79,24 @@ cancelado;
 - [ ] Objetos do kubernetes (Deployment, Service, Ingress, ConfigMap, Secret).
 - [x] Banco de dados PostgreSQL RDS AWS.
 
+# Evidências
+
+### Coberura de testes em 80%
+
+![image](/images/fiap-car-resale-cov.png)
+
+Link para o relatório de cobertura de testes:
+
+[Cobertura de Testes](/tests/index.html)
+
+### CI/CD
+
+Github Actions:
+
+![image](/images/actions.png)
+
+
+
+
+
 
