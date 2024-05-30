@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "ba90e782-89ee-43f6-aa2f-628c01f7b183",
+		"name": "FIAP - Car Sale",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33064028"
+	},
+	"item": [
+		{
+			"name": "List Car",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{fiap-sale}}/fiap-car-resale/api/v1/cars?car_sold=false",
+					"host": [
+						"{{fiap-sale}}"
+					],
+					"path": [
+						"fiap-car-resale",
+						"api",
+						"v1",
+						"cars"
+					],
+					"query": [
+						{
+							"key": "car_sold",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sales",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Sales",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{fiap-sale}}/fiap-car-resale/api/v1/sales/1",
+					"host": [
+						"{{fiap-sale}}"
+					],
+					"path": [
+						"fiap-car-resale",
+						"api",
+						"v1",
+						"sales",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sales",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "WebHook Payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"payment_code\": \"6946181f-c344-414e-80ef-c1f8a2948545\",\n    \"status\": \"COMPLETED\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{fiap-sale}}/fiap-car-resale/api/v1/sales/webhook/payment",
+					"host": [
+						"{{fiap-sale}}"
+					],
+					"path": [
+						"fiap-car-resale",
+						"api",
+						"v1",
+						"sales",
+						"webhook",
+						"payment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
