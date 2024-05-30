@@ -96,6 +96,22 @@ Github Actions:
 
 Link para o workflow: [Github Actions](https://github.com/alissonit/fiap-car-resale/actions)
 
+### Documentação da API
+
+![image](/images/resale-swagger.png)
+
+### Deploy K8s (Redhat Openshift)
+
+![image](/images/openshift.png)
+
+Evidências dos recursos criados no Openshift:
+
+![image](/images/openshift-ctl.png)
+
+Recursos criados no Openshift:
+
+[Kubernetes resources](/infrastructure/kubernetes-openshift/)
+
 
 
 
