@@ -69,14 +69,33 @@ consiga, a partir do código do pagamento, informar se o pagamento foi efetuado 
 cancelado;
 
 ### CI/CD
-- [ ] Implementar Github Actions
-- [ ] Implementar SonarQube
+- [x] Implementar Github Actions
 - [x] Cobertura de testes unitários acima de 80%
 - [x] Deploy no Openshift
 
 ### Infraestrutura
-- [ ] Cluster Openshift Red Hat.
-- [ ] Objetos do kubernetes (Deployment, Service, Ingress, ConfigMap, Secret).
+- [x] Cluster Openshift Red Hat.
+- [x] Objetos do kubernetes (Deployment, Service, Ingress, ConfigMap, Secret).
 - [x] Banco de dados PostgreSQL RDS AWS.
+
+# Evidências
+
+### Coberura de testes em 80%
+
+![image](/images/fiap-car-resale-cov.png)
+
+Link para o relatório de cobertura de testes:
+
+[Cobertura de Testes](/tests/index.html)
+
+### CI/CD
+
+Github Actions:
+
+![image](/images/actions.png)
+
+
+
+
 
 

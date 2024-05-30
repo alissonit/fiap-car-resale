@@ -3,11 +3,11 @@ kind: Route
 metadata:
   annotations:
     openshift.io/host.generated: "true"
-  name: vs-fiap-car-resale-admin
+  name: vs-fiap-car-resale
   namespace: alissonskt-dev
 spec:
   host: vs-fiap-car-resale-admin-alissonskt-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
-  path: /fiap-car-resale/admin
+  path: /fiap-car-resale
   port:
     targetPort: 8000
   tls:
@@ -15,6 +15,6 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: fiap-car-resale-admin-svc
+    name: fiap-car-resale-svc
     weight: 100
   wildcardPolicy: None
