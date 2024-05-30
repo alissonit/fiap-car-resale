@@ -1,8 +1,8 @@
-"""iniciando app
+"""init migr
 
-Revision ID: c17fffc40391
+Revision ID: 09f21eccd5d0
 Revises: 
-Create Date: 2024-05-15 00:36:29.775679
+Create Date: 2024-05-29 21:49:57.532396
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'c17fffc40391'
+revision: str = '09f21eccd5d0'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -47,8 +47,9 @@ def upgrade() -> None:
     sa.Column('sale_id', sa.Integer(), nullable=False),
     sa.Column('car_id', sa.Integer(), nullable=True),
     sa.Column('buyer_cpf', sa.String(), nullable=True),
-    sa.Column('sale_state', sa.String(), nullable=True),
+    sa.Column('sale_status', sa.String(), nullable=True),
     sa.Column('sale_date', sa.DateTime(), nullable=True),
+    sa.Column('payment_code', sa.String(), nullable=True),
     sa.Column('sale_created_at', sa.DateTime(), nullable=True),
     sa.Column('sale_updated_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('sale_id')
