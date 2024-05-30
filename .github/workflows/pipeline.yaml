@@ -30,7 +30,7 @@ jobs:
 
       - name: Docker build
         run: |
-          docker build -t alissonskt/fiap-car-resale:1.0.0 .
+          docker build -t alissonskt/fiap-car-resale:1.0.1 .
 
       - name: Docker login
         run: |
@@ -38,15 +38,15 @@ jobs:
       
       - name: Docker push
         run: |
-          docker push alissonskt/fiap-car-resale:1.0.0
+          docker push alissonskt/fiap-car-resale:1.0.1
 
       - name: oc import image
         run: |
-         oc import-image image-registry.openshift-image-registry.svc:5000/alissonskt-dev/fiap-car-resale:1.0.0 --from=alissonskt/fiap-car-resale:1.0.0 --confirm
+         oc import-image image-registry.openshift-image-registry.svc:5000/alissonskt-dev/fiap-car-resale:1.0.1 --from=alissonskt/fiap-car-resale:1.0.1 --confirm
 
       - name: Deploy App
         run: |
-          oc patch dc fiap-car-resale -p '{"spec":{"template":{"spec":{"containers":[{"name":"fiap-car-resale","image":"default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/alissonskt-dev/fiap-car-resale:1.0.0"}]}}}}' -n alissonskt-dev
+          oc patch dc fiap-car-resale -p '{"spec":{"template":{"spec":{"containers":[{"name":"fiap-car-resale","image":"default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/alissonskt-dev/fiap-car-resale:1.0.1"}]}}}}' -n alissonskt-dev
       
       - name: oc rollout 
         run: |
