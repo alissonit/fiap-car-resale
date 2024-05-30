@@ -112,6 +112,13 @@ Recursos criados no Openshift:
 
 [Kubernetes resources](/infrastructure/kubernetes-openshift/)
 
+### Evidência do banco de dados:
+
+![image](/images/fiap-resale-db.png)
+
+![image](/images/fiap-resale-db-1.png)
+
+
 ### Desenho da arquitetura Hexagonal
 
 ![image](/images/arquitetura-hex-fiap.png)
