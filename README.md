@@ -80,7 +80,7 @@ cancelado;
 
 # Evidências
 
-### Coberura de testes em 80%
+### Cobertura de testes em 80%
 
 ![image](/images/fiap-car-resale-cov.png)
 
@@ -93,6 +93,8 @@ Link para o relatório de cobertura de testes:
 Github Actions:
 
 ![image](/images/actions.png)
+
+Link para o workflow: [Github Actions](https://github.com/alissonit/fiap-car-resale/actions)
 
 
 
