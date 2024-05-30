@@ -112,6 +112,10 @@ Recursos criados no Openshift:
 
 [Kubernetes resources](/infrastructure/kubernetes-openshift/)
 
+### Desenho da arquitetura Hexagonal
+
+![image](/images/arquitetura-hex-fiap.png)
+
 
 
 
